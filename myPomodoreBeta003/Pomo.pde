@@ -29,7 +29,7 @@ class Pomo{
   
     fill(mainC);
     noStroke();
-    circle(0,pOffset,r);
+    ellipse(0,pOffset,r,r);
     popMatrix();
     //textFont(f1);
     //textAlign(CENTER);

@@ -1,12 +1,9 @@
 class Clock{
-  
   float x;
   float y;
   float r1;
   float r2;
   int fs =72;
-
- 
   String displayA;
   String displayB;
   String displayStr;
@@ -19,16 +16,13 @@ class Clock{
     y = y_;
     r1 = r1_;
     r2 = r2_;
-    
-
   }
   
   void update(int displayA_, int displayB_){
     runArc = (map(displayLeft,0, displayStart, TWO_PI, 0))-HALF_PI;
     displayA = nf(floor(displayA_),2,0);
     displayB = nf((displayB_),2,0);
-    displayStr = displayA + ":" + displayB;
-  
+    displayStr = displayA + ":" + displayB;  
   }
   
   void show(){
@@ -43,10 +37,5 @@ class Clock{
     textFont(fClock);
     textAlign(CENTER);
     text(displayStr, x, y+fs/3,6);
-    
-    //    textFont(f1, 16);
-
   }
-    
-  
 }

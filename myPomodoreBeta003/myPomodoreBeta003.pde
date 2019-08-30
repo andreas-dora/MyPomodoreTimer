@@ -18,10 +18,10 @@ SoundFile ring;
 Clock clock;
 Table pref;
 Button[] button = new Button[4];
-ArcButton[] aButton = new ArcButton[9];
+ArcButton[] aButton = new ArcButton[8];
 
 ArrayList<Pomo> tempPomo;
-ArrayList<Todo> todo;
+//ArrayList<Todo> todo;
 Timer timer;
 Timer testTimer;
 color teal = #008080;
@@ -90,12 +90,10 @@ boolean tempTest = false;
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 public void settings(){
-  size(360,640);
+  size(360,420);
 }
 
 void setup(){
- // size(360, 640); //360
-
    pref = loadTable("pref.csv", "header");
      
   for (TableRow row : pref.rows()) {
@@ -122,7 +120,7 @@ void setup(){
 
   fZeichen = loadFont("HelveticaNeue-CondensedBlack-20.vlw");
   clockX = width/2;
-  clockY = (height - 2*offset)/3;
+  clockY = height/2; //(height - 2*offset)/3;
   clockR1 = (width - 7*offset)/2;
   clockR2 = (width - 10*offset)/2;
   
@@ -144,10 +142,8 @@ void setup(){
   aButton[6] = new ArcButton(offset+aButtonR,width -(buttonR  + offset), aButtonR, "-");
   aButton[7] = new ArcButton(width - (offset + aButtonR),width -(buttonR  + offset) , aButtonR, "-");
 
-  aButton[8] = new ArcButton(width - (offset + aButtonR),width +(2*buttonR  + offset+24) , aButtonR, "+");
 
   tempPomo = new ArrayList<Pomo>();
-  todo = new ArrayList<Todo>();
   
   clock = new Clock(clockX, clockY, clockR1, clockR2);
   timer = new Timer();
@@ -174,10 +170,7 @@ void draw(){
    displayLeft = displayStart -secondsPassed;
    displayMin = floor(displayLeft/60);
    displaySec = displayLeft%60;
-   //displayMin = floor(timeLeft/60000);
-   //displaySec = timeLeft%60000;
-
-
+ 
   for(int i = 0; i < button.length; i++){
     button[i].show(mouseX, mouseY);
   }
@@ -185,15 +178,7 @@ void draw(){
     aButton[i].a_show(mouseX, mouseY);
     aButton[i].a_update(!hasBegun);
   }
- 
-    //for (int i = 4; i< 8; i++){
-    //  button[i].update(!hasBegun, "+", fsZeichen);
-    //}
-    //for (int i = 8; i< button.length; i++){
-    //  button[i].update(!hasBegun, "-", fsZeichen);
-    //}
 
-    
     if(hasBegun){
       clock.update(displayMin, displaySec);
   
@@ -220,24 +205,7 @@ void draw(){
     tp.update();
     tp.show();    
   }
-  
-  for(Todo td : todo){
- //   td.update();
-    td.show();    
-  }  
-  
-  stroke(mainC);
-  strokeWeight(3);
-  line(offset, width + 2*buttonR+offset, width-2*offset,width +2*buttonR+offset);
-  
-  fill(mainC);
-  textFont(fZahl);
-  textAlign(LEFT);
-  text("To Do List", offset +buttonR, width+ 2*(buttonR+offset+12));
-  
-  
 
-  
   if((timer.isFinished())&& (isRunning)){
     if(pomodoreRunde){
       pomodoreUp();
@@ -253,10 +221,10 @@ void draw(){
     }
   }
  
-  textFont(fText);
-  fill(mainC);
-  textAlign(CENTER);
-  text(nfPomodore , width/2, width+buttonR+fsText);  
+ // textFont(fText);
+ // fill(mainC);
+ // textAlign(CENTER);
+ // text(nfPomodore , width/2, width+buttonR+fsText);  
 }
 
 void mousePressed(){
@@ -360,7 +328,7 @@ void mousePressed(){
       specialButton = str(special/60000);
     }
   }
-  if(aButton[5].isPositive(mouseX, mouseY)){
+    if(aButton[5].isPositive(mouseX, mouseY)){
     if(grPause > 60000){ 
       snapMinus.play();
       grPause-=60000;
@@ -381,9 +349,9 @@ void mousePressed(){
       klPauseButton = str(klPause/60000);
     }
   }
-  if(aButton[8].isPositive(mouseX, mouseY)){
-   addToDo();
-    }  
+  //if(aButton[8].isPositive(mouseX, mouseY)){
+  // addToDo();
+  //  }  
 }
 
 void reset(){
@@ -437,6 +405,6 @@ void tempDown(){
  }        
 }
 
-void addToDo(){
-  todo.add(new Todo(490 +30*todo.size(), "Constrain-Fehler beheben"));
-}
+//void addToDo(){
+//  todo.add(new Todo(490 +30*todo.size(), "Constrain-Fehler beheben"));
+//}
