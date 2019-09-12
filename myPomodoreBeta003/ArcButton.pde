@@ -1,4 +1,4 @@
-class ArcButton {
+ class ArcButton {
   float x;
   float y;
   float r;

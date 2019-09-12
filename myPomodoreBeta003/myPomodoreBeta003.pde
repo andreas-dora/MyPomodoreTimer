@@ -404,7 +404,3 @@ void tempDown(){
    tempPomo.remove(i-1);
  }        
 }
-
-//void addToDo(){
-//  todo.add(new Todo(490 +30*todo.size(), "Constrain-Fehler beheben"));
-//}
